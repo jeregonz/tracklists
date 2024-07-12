@@ -1,7 +1,7 @@
 export interface Song {
+    IDSong: number;
     songName : string;
     artist : string;
     album : string;
-    songLength : string;
     isLiked : boolean;
 }

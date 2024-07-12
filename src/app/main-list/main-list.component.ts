@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Song } from '../Song';
+import { FavSongsService } from '../fav-songs.service';
+import { MusicDataService } from '../music-data.service';
 
 @Component({
   selector: 'main-list',
@@ -8,38 +10,26 @@ import { Song } from '../Song';
 })
 
 export class MainListComponent {
-  songs: Song[] = [
-    {
-      songName : "Give Life Back to Music",
-      artist : "Daft Punk",
-      album : "RAM",
-      songLength : "04:35",
-      isLiked: false,
-    },
-    {
-      songName : "The Game of Love",
-      artist : "Daft Punk",
-      album : "RAM",
-      songLength : "05:22",
-      isLiked: false,
-    },
-    {
-      songName : "Giorgio by Moroder",
-      artist : "Daft Punk",
-      album : "RAM",
-      songLength : "09:04",
-      isLiked: false,
-    },
-    {
-      songName : "Within",
-      artist : "Daft Punk",
-      album : "RAM",
-      songLength : "03:48",
-      isLiked: true,
-    },
-  ]
+  songs: Song[] = []
+
+  constructor(private favSongs: FavSongsService, private musicData: MusicDataService){
+  }
+
+  ngOnInit(): void{
+    this.musicData.getAll().subscribe(data => this.songs = data)
+  }
 
   setLike(song: Song): void{
     song.isLiked = !song.isLiked
+  }
+  
+  addToFavs(song: Song): void{
+    this.setLike(song)
+    this.favSongs.addToFavs(song)
+  }
+
+  deleteFav(song: Song): void{
+    this.setLike(song)
+    this.favSongs.deleteFav(song.IDSong)
   }
 }

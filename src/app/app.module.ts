@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { MainListComponent } from './main-list/main-list.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
-import { FavSongsComponent } from './fav-songs/fav-songs.component';
+import { FavListComponent } from './fav-list/fav-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { FavSongsComponent } from './fav-songs/fav-songs.component';
     MainListComponent,
     AboutComponent,
     HomeComponent,
-    FavSongsComponent
+    FavListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

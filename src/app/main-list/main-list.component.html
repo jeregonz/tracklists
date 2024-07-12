@@ -4,26 +4,24 @@
             <th scope="col">Canción</th>
             <th scope="col">Artista</th>
             <th scope="col">Album</th>
-            <th scope="col">Duración</th>
             <th scope="col">Like</th>
         </tr>
     </thead>
     <tbody>
-        @for (song of songs; track song.songName) {
+        @for (song of songs; track song.IDSong) {
         <tr [ngClass]="{'table-success': song.isLiked}">
             <td>{{ song.songName }}</td>
             <td>{{ song.artist }}</td>
             <td>{{ song.album }}</td>
-            <td>{{ song.songLength }}</td>
             @if (song.isLiked){
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm" (click)="setLike(song)">
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="deleteFav(song)">
                         <i class="bi bi-heart-fill"></i>
                     </button>
                 </td>
             } @else {
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm" (click)="setLike(song)">
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="addToFavs(song)">
                         <i class="bi bi-heart"></i>
                     </button>
                 </td>
